@@ -2,6 +2,12 @@ import random
 import math
 import sys
 def factor(aValue, bValue, cValue, var):   
+    '''
+    input: a, b, and c values of the quadratic equation
+    and the letter that is being used for a variable.
+    output: the quadratic factored and the roots of 
+    the quadratic if it can be factored.
+    '''
     bozo = ''
     #if aValue is negative it factors out negative 1
     if aValue < 0:
@@ -113,6 +119,10 @@ var = input('what is your variable ')
 isUnFactorable = factor(aValue, bValue, cValue, var)
 if isUnFactorable:
     def finddiscriminant(a, b, c):
+        '''
+        input: a b and c values of the quadratic.
+        output: the discriminant of the quadratic.
+        '''
         dis = b**2-(4*a*c)
         if dis < 0:
             return False
@@ -124,7 +134,7 @@ if isUnFactorable:
     def simplifyDiscriminant(a, b, dis):
         '''
         input: a and b values, discriminant
-        output: symplified radical
+        output: the radical with the discriminant is symplified
         '''
         squareList = [1]
         squareFactors = []
