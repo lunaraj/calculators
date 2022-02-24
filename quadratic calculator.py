@@ -1,6 +1,7 @@
 import random
 import math
 import sys
+calculations = 0
 def factor(aValue, bValue, cValue, var):   
     '''
     input: a, b, and c values of the quadratic equation
@@ -36,6 +37,7 @@ def factor(aValue, bValue, cValue, var):
             divisor = abs(bValue)
         if abs(cValue) <= abs(aValue) and abs(cValue) <= abs(bValue):
             divisor = abs(cValue)
+    global calculations += 7
     #factors out greatest common factor
     while divisor > 0:
         if aValue%divisor == 0 and bValue%divisor == 0 and cValue%divisor == 0:
@@ -43,6 +45,7 @@ def factor(aValue, bValue, cValue, var):
             break
         else:
             divisor -= 1
+            global calculations += 1
     if multiple > 1:
         multiple = str(multiple)
     else:
@@ -55,6 +58,7 @@ def factor(aValue, bValue, cValue, var):
             factorMult.append(divisor)
             factorMult.append(-divisor)
         divisor -= 1
+        global calculations += 1
     length = len(factorMult)
     #finds the factors that will work
     while True:
@@ -64,6 +68,7 @@ def factor(aValue, bValue, cValue, var):
             factor1 = factorMult[random.randint(0,length-1)]
             factor2 = factorMult[random.randint(0,length-1)]
             guesses += 1
+            global calculations += 1
         if guesses > abs(multValue*100):
             print('\n\n\nfactored form: none')
             return True
@@ -75,6 +80,7 @@ def factor(aValue, bValue, cValue, var):
             break
         else:
             divisor -= 1
+            global calculations += 1
     divisor = aValue
     while divisor > 0:
         if aValue%divisor == 0 and factor2%divisor == 0:
@@ -82,6 +88,7 @@ def factor(aValue, bValue, cValue, var):
             break
         else:
             divisor -= 1
+            global calculations += 1
     if factor1 < 0:
         neg = ''
     else:
@@ -112,6 +119,7 @@ def factor(aValue, bValue, cValue, var):
     root1 = gcfDivide(firstFactor, aValue4)
     root2 = gcfDivide(secondFactor, aValue5)
     print('roots: ' + str(root1) + ' and ' + str(root2))
+    global calculations += 10
     return False
 aValue = int(input('what is your a value '))
 bValue = int(input('what is your b value '))
@@ -143,6 +151,7 @@ if isUnFactorable:
         while max(squareList) < dis:
             squareList.append(mult**2)
             mult += 1
+            global calculations += 1
         for i in squareList:
             if dis%i == 0:
                 squareFactors.append(i)
@@ -166,3 +175,5 @@ if isUnFactorable:
     else:
         print('root 1: ' + neg + '(' + str(int(-bValue/gcf)) + ' - ' + str(bozo) + 'sqrt' + str(int(newDis[1])) + ')' )
         print('root 2: ' + neg + '(' + str(int(-bValue/gcf)) + ' + ' + str(bozo)+ 'sqrt' + str(int(newDis[1])) + ')' )
+calculations += 10
+print(str(calculations) + ' calculations')
