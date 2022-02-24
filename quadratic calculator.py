@@ -6,7 +6,8 @@ def factor(aValue, bValue, cValue, var):
     input: a, b, and c values of the quadratic equation
     and the letter that is being used for a variable.
     output: the quadratic factored and the roots of 
-    the quadratic if it can be factored.
+    the quadratic if it can be factored. Returns whether
+    the quadratic can be factored 
     '''
     bozo = ''
     #if aValue is negative it factors out negative 1
