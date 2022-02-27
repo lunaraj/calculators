@@ -71,7 +71,7 @@ def factor(aValue, bValue, cValue, var):
             guesses += 1
             calculations += 2
         if guesses > abs(multValue*100):
-            print('\n\n\nfactored form: none')
+            print('\n\n\nfactored form: none\n')
             return True
     #uses x method to divide factors
     divisor = aValue
@@ -168,15 +168,27 @@ if isUnFactorable:
         aValue = -aValue
         neg = '-'
     bozo = newDis[0]/gcf
+    if neg == '-':
+        paren = ('(', ')')
+    else:
+        paren = ('', '')
     if bozo == 1:
         bozo = ''
     else:
         bozo = str(int(bozo)) + '*'
+    str1 = neg + paren[0] + str(int(-bValue/gcf)) + ' - ' + str(bozo) + 'sqrt' + str(int(newDis[1])) + paren[1]
+    str2 = neg + paren[0] + str(int(-bValue/gcf)) + ' + ' + str(bozo) + 'sqrt' + str(int(newDis[1])) + paren[1]
+    fraction = ''
+    spaces = ''
+    for i in range(len(str1)):
+        fraction += '-'
+    for i in range(len(str1)//2):
+        spaces += ' '
     if (2*abs(aValue))/gcf > 1:
-        print('root 1: ' + neg + '(' + str(int(-bValue/gcf)) + ' - ' + str(bozo) + 'sqrt' + str(int(newDis[1])) + ')/' + str(int((2*aValue)/gcf)))
-        print('root 2: ' + neg + '(' + str(int(-bValue/gcf)) + ' + ' + str(bozo)+'sqrt' + str(int(newDis[1])) + ')/' + str(int((2*aValue)/gcf)))
+        print('root1:\n' + str1 + '\n' + fraction + '\n' + spaces + str(int((2*aValue)/gcf)) + '\n')
+        print('root2:\n' + str2 + '\n' + fraction + '\n' + spaces + str(int((2*aValue)/gcf)) + '\n')
     else:
-        print('root 1: ' + neg + '(' + str(int(-bValue/gcf)) + ' - ' + str(bozo) + 'sqrt' + str(int(newDis[1])) + ')' )
-        print('root 2: ' + neg + '(' + str(int(-bValue/gcf)) + ' + ' + str(bozo)+ 'sqrt' + str(int(newDis[1])) + ')' )
+        print('root 1: ' + neg + paren[0] + str(int(-bValue/gcf)) + ' - ' + str(bozo) + 'sqrt' + str(int(newDis[1])) + paren[1] + '\n')
+        print('root 2: ' + neg + paren[0] + str(int(-bValue/gcf)) + ' + ' + str(bozo)+ 'sqrt' + str(int(newDis[1])) + paren[1] + '\n')
 calculations += 10
 print(str(calculations) + ' calculations')
