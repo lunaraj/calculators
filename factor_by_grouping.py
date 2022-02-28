@@ -1,3 +1,4 @@
+import math
 def factorByGrouping(a, b, c, d, var):
     if c < 0:
         c = -c
