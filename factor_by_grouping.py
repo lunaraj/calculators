@@ -1,4 +1,5 @@
 import math
+import sys
 def factorByGrouping(a, b, c, d, var):
     if c < 0:
         c = -c
@@ -12,6 +13,8 @@ def factorByGrouping(a, b, c, d, var):
     else:
         pos = '+'
     gcf2 = math.gcd(c, d)
+    if not (a/gcf == c/gcf2 and b/gcf == d/gcf2):
+        sys.exit('cannot be factored by grouping')
     if gcf == 1:
         newGcf = ''
     else:
