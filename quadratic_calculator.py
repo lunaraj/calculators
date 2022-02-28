@@ -69,7 +69,7 @@ def factor(aValue, bValue, cValue, var):
             factor2 = factorMult[random.randint(0,length-1)]
             guesses += 1
             calculations += 2
-        if guesses > abs(multValue*100):
+        if guesses > len(factorMult) * 100:
             print('\n\n\nfactored form: none\n')
             return True
     #uses x method to divide factors
@@ -227,9 +227,8 @@ def ask():
     input: nothing
     output: nothing
     does all the inputs
-
     '''
-    group = input('Type q for quadratic and g for factor by grouping ')
+    group = input("Type 'q' for quadratic and 'g' for factor by grouping \n")
     if group == 'q':
         aValue = int(input('what is your a value '))
         bValue = int(input('what is your b value '))
