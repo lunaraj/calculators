@@ -1,7 +1,6 @@
 import random
 import math
 import sys
-calculations = 0
 def factor(aValue, bValue, cValue, var):  
     '''
     input: a, b, and c values of the quadratic equation
@@ -190,8 +189,61 @@ def quadratics(aValue, bValue, cValue, var):
             print('root 2: ' + neg + paren[0] + str(int(-bValue/gcf)) + ' + ' + str(bozo)+ 'sqrt' + str(int(newDis[1])) + paren[1] + '\n')
     calculations += 10
     print(str(calculations) + ' calculations')
-aValue = int(input('what is your a value '))
-bValue = int(input('what is your b value '))
-cValue = int(input('what is your c value '))
-var = input('what is your variable ')   
-quadratics(aValue, bValue, cValue, var)
+def factorByGrouping(a, b, c, d, var):
+    if c < 0:
+        c = -c
+        d = -d
+        neg = '-'
+    else:
+        neg = '+'
+    gcf = math.gcd(a, b)
+    if b < 0:
+        pos = ''
+    else:
+        pos = '+'
+    gcf2 = math.gcd(c, d)
+    if gcf == 1:
+        newGcf = ''
+    else:
+        newGcf = str(gcf)
+    if a/gcf == 1:
+        aGcf = ''
+    else:
+        aGcf = str(int(a/gcf))
+    if neg == '-' and math.sqrt(gcf2).is_integer() == True:
+        gcf = math.sqrt(gcf)
+        if gcf == 1:
+            newGcf = ''
+        else:
+            newGcf = str(gcf)
+        gcf2 = math.sqrt(gcf2)
+        gcf2 = int(gcf2)
+        print('(' + newGcf + var + '-' + str(gcf2) + ')(' + newGcf + var + '+' + str(gcf2) + ')(' + aGcf + var + pos + str(int(b/gcf)) + ')')
+    else:
+        gcf2 = int(gcf2)
+        print('(' + newGcf + var + '^2' + neg + str(gcf2) + ')(' + aGcf + var + pos + str(int(b/gcf)) + ')')
+def ask():
+    '''
+    input: nothing
+    output: nothing
+    does all the inputs
+
+    '''
+    group = input('Type q for quadratic and g for factor by grouping ')
+    if group == 'q':
+        aValue = int(input('what is your a value '))
+        bValue = int(input('what is your b value '))
+        cValue = int(input('what is your c value '))
+        var = input('what is your variable ')   
+        quadratics(aValue, bValue, cValue, var)
+    elif group == 'g':
+        aValue = int(input('what is your a value '))
+        bValue = int(input('what is your b value '))
+        cValue = int(input('what is your c value '))
+        dValue = int(input('what is your d value '))
+        var = input('what is your variable ')
+        factorByGrouping(aValue, bValue, cValue, dValue, var)
+    else:
+        ask()
+calculations = 0
+ask()
