@@ -2,7 +2,7 @@ import random
 import math
 import sys
 calculations = 0
-def quadratics():
+def quadratics(aValue, bValue, cValue, var):
     global calculations
     def factor(aValue, bValue, cValue, var):  
         '''
@@ -124,10 +124,6 @@ def quadratics():
         print('roots: ' + str(root1) + ' and ' + str(root2))
         calculations += 10
         return False
-    aValue = int(input('what is your a value '))
-    bValue = int(input('what is your b value '))
-    cValue = int(input('what is your c value '))
-    var = input('what is your variable ')
     isUnFactorable = factor(aValue, bValue, cValue, var)
     if isUnFactorable:
         def finddiscriminant(a, b, c):
@@ -194,4 +190,8 @@ def quadratics():
             print('root 2: ' + neg + paren[0] + str(int(-bValue/gcf)) + ' + ' + str(bozo)+ 'sqrt' + str(int(newDis[1])) + paren[1] + '\n')
     calculations += 10
     print(str(calculations) + ' calculations')
-quadratics()
+aValue = int(input('what is your a value '))
+bValue = int(input('what is your b value '))
+cValue = int(input('what is your c value '))
+var = input('what is your variable ')   
+quadratics(aValue, bValue, cValue, var)
