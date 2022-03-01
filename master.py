@@ -24,6 +24,7 @@ def factor(aValue, bValue, cValue, var):
     factor2 = 0
     guesses = 0
     multiple = 0
+    divisor = 0
     #finds the smallest number of a, b, and c value so can find the gcf of all three later. if difference of squares it doesn't count the bValue
     if bValue == 0:
         if abs(aValue) <= abs(cValue):
@@ -212,7 +213,7 @@ def factorByGrouping(a, b, c, d, var):
         aGcf = ''
     else:
         aGcf = str(int(a/gcf))
-    if neg == '-' and math.sqrt(gcf2).is_integer() == True:
+    if neg == '-' and math.sqrt(gcf2).is_integer() == True and math.sqrt(gcf).is_integer() == True:
         gcf = math.sqrt(gcf)
         if gcf == 1:
             newGcf = ''
