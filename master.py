@@ -230,7 +230,7 @@ def ask():
     output: nothing
     does all the inputs
     '''
-    group = input("Type 'q' for quadratic and 'g' for factor by grouping \n")
+    group = input("Type 'q' for quadratic and 'g' for factor by grouping ")
     if group == 'q':
         aValue = int(input('what is your a value '))
         bValue = int(input('what is your b value '))
