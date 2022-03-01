@@ -214,7 +214,7 @@ def factorByGrouping(a, b, c, d, var):
     else:
         aGcf = str(int(a/gcf))
     if neg == '-' and math.sqrt(gcf2).is_integer() == True and math.sqrt(gcf).is_integer() == True:
-        gcf = math.sqrt(gcf)
+        gcf = math.sqrt(int(gcf))
         if gcf == 1:
             newGcf = ''
         else:
