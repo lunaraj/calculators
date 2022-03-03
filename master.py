@@ -207,13 +207,15 @@ def factorByGrouping(a, b, c, d, var):
         sys.exit('cannot be factored by grouping')
     if gcf == 1:
         newGcf = ''
+        GCF = 1
     else:
         newGcf = str(gcf)
+        GCF = gcf
     if a/gcf == 1:
         aGcf = ''
     else:
         aGcf = str(int(a/gcf))
-    if neg == '-' and math.sqrt(gcf2).is_integer() == True and math.sqrt(gcf).is_integer() == True:
+    if neg == '-' and math.sqrt(gcf2).is_integer() == True and math.sqrt(GCF).is_integer() == True:
         gcf = math.sqrt(int(gcf))
         if gcf == 1:
             newGcf = ''
