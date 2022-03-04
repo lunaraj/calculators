@@ -118,7 +118,7 @@ def factor(aValue, bValue, cValue, var):
             return str(int(-factor)) + '/' + str(int(aValue))
     root1 = gcfDivide(firstFactor, aValue4)
     root2 = gcfDivide(secondFactor, aValue5)
-    print('roots: ' + str(root1) + ' and ' + str(root2))
+    print('roots: ' + str(root1) + ' or ' + str(root2))
     calculations += 10
     return False
 def quadratics(aValue, bValue, cValue, var):
