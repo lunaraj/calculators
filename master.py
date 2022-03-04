@@ -122,7 +122,7 @@ def factor(aValue, bValue, cValue, var):
     if root1 == root2:
         print('root: ' + str(root1))
     else:
-        print('roots: ' + str(root1) + ' and ' + str(root2))
+        print('roots: ' + str(root1) + ' or ' + str(root2))
     calculations += 10
     return False
 def quadratics(aValue, bValue, cValue, var):
