@@ -21,4 +21,5 @@ def simplifyRadical(rad):
     newRad = rad/max(squareFactors)
     return (int(math.sqrt(max(squareFactors))), int(newRad))
 rad = int(input('type in square root: '))
-print(simplifyRadical(rad))
+newRad = simplifyRadical(rad)
+print(str(newRad[0]) + 'sqrt' + str(newRad[1]))
