@@ -25,27 +25,8 @@ def factor(aValue, bValue, cValue, var):
     guesses = 0
     multiple = 0
     #finds the smallest number of a, b, and c value so can find the gcf of all three later. if difference of squares it doesn't count the bValue
-    if bValue == 0:
-        if abs(aValue) <= abs(cValue):
-            divisor = abs(aValue)
-        elif abs(cValue) < abs(aValue):
-            divisor = abs(cValue)
-    else: 
-        if abs(aValue) <= abs(bValue) and abs(aValue) <= abs(cValue):
-            divisor = abs(aValue)
-        if abs(bValue) <= abs(aValue) and abs(bValue) <= abs(cValue):
-            divisor = abs(bValue)
-        if abs(cValue) <= abs(aValue) and abs(cValue) <= abs(bValue):
-            divisor = abs(cValue)
-    #factors out greatest common factor
     calculations += 7
-    while divisor > 0:
-        if aValue%divisor == 0 and bValue%divisor == 0 and cValue%divisor == 0:
-            multiple = divisor
-            break
-        else:
-            divisor -= 1
-            calculations += 1
+    multiple = math.gcd(aValue, bValue, cValue)
     if multiple > 1:
         multiple = str(multiple)
     else:
@@ -73,22 +54,8 @@ def factor(aValue, bValue, cValue, var):
             print('\n\n\nfactored form: none\n')
             return True
     #uses x method to divide factors
-    divisor = aValue
-    while divisor > 0:
-        if aValue%divisor == 0 and factor1%divisor == 0:
-            factor1Gcf = divisor
-            break
-        else:
-            divisor -= 1
-            calculations += 1
-    divisor = aValue
-    while divisor > 0:
-        if aValue%divisor == 0 and factor2%divisor == 0:
-            factor2Gcf = divisor
-            break
-        else:
-            divisor -= 1
-            calculations += 1
+    factor1Gcf = math.gcd(aValue, factor1)
+    factor2Gcf = math.gcd(aValue, factor2)
     if factor1 < 0:
         neg = ''
     else:
