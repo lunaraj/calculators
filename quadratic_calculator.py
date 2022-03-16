@@ -12,6 +12,9 @@ def factor(aValue, bValue, cValue, var):
     global calculations
     bozo = ''
     #if aValue is negative it factors out negative 1
+    ogaValue = aValue
+    ogbValue = bValue
+    ogcValue = cValue
     if aValue < 0:
         aValue = -aValue
         bValue = -bValue
@@ -52,6 +55,7 @@ def factor(aValue, bValue, cValue, var):
             calculations += 2
         if guesses > len(factorMult) * 100:
             print('\n\n\nfactored form: none\n')
+            finddis(ogaValue, ogbValue, ogcValue)
             return True
     #uses x method to divide factors
     factor1Gcf = math.gcd(aValue, factor1)
@@ -75,6 +79,7 @@ def factor(aValue, bValue, cValue, var):
     firstFactor = int(factor1/factor1Gcf)
     secondFactor = int(factor2/factor2Gcf)
     print('\n\n\nfactored form: ' + bozo + multiple + '(' + aValue2 + var + neg + str(firstFactor) + ')' + '(' + aValue3 + var + neg2 + str(secondFactor) + ')')
+    finddis(ogaValue, ogbValue, ogcValue)
     def gcfDivide(factor, aValue):
         gcf = math.gcd(abs(factor), aValue)
         factor = factor/gcf
@@ -156,6 +161,13 @@ def quadratics(aValue, bValue, cValue, var):
             print('root 2: ' + neg + paren[0] + str(int(-bValue/gcf)) + ' + ' + str(bozo)+ 'sqrt' + str(int(newDis[1])) + paren[1] + '\n')
     calculations += 10
     print(str(calculations) + ' calculations')
+def finddis(a, b, c):
+    '''
+    input: a b and c values of the quadratic.
+    output: the discriminant of the quadratic.
+    '''
+    dis = b**2-(4*a*c)
+    print('discriminant: ' + str(dis) + '\n')
 def ask():
     '''
     input: nothing
