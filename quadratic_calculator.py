@@ -1,6 +1,76 @@
 import random
 import math
 import sys
+class fixEquation(object):
+    '''
+    methods to put equation into standard form
+    '''
+    def __init__(self, equation, var):
+        self.equation = equation
+        self.var = var
+    def sortTerms(self):
+        '''
+        input: nothing
+        output: tuple of lists containing terms
+
+        '''
+        terms = self.equation.split(' ')
+        a = []
+        b = []
+        c = []
+        neg = False
+        neg2 = 1
+        for term in terms:
+            if term == '+':
+                neg = False
+            elif term == '-':
+                neg = True
+            elif '^' in term and self.var in term: #checks if term is a square
+                if term[0] == self.var:
+                    if neg:
+                        a.append(-1*neg2)
+                    else:
+                        a.append(1*neg2)
+                else:
+                    termCopy = term.split(self.var)
+                    if neg:
+                        a.append(-int(termCopy[0])*neg2)
+                    else:
+                        a.append(int(termCopy[0])*neg2)
+            elif self.var in term: #checks if term is a value of var
+                termCopy = term.split(self.var)
+                if term[0] == self.var:
+                    if neg:
+                        b.append(-1*neg2)
+                    else:
+                        b.append(1*neg2)
+                else:
+                    if neg:
+                        b.append(-int(termCopy[0])*neg2)
+                    else:
+                        b.append(int(termCopy[0])*neg2)
+            elif term == '=':
+                neg2 = -1
+            else:
+                if neg:
+                    c.append(-int(term)*neg2)
+                else:
+                    c.append(int(term)*neg2)
+        return (a, b, c)
+    def addLikeTerms(self, abc):
+        a = abc[0]
+        b = abc[1]
+        c = abc[2]
+        aValue = 0
+        bValue = 0
+        cValue = 0
+        for digit in a:
+            aValue += digit
+        for digit in b:
+            bValue += digit
+        for digit in c:
+            cValue += digit
+        return (aValue, bValue, cValue)
 def factor(aValue, bValue, cValue, var):  
     '''
     input: a, b, and c values of the quadratic equation
@@ -176,10 +246,10 @@ def ask():
     output: nothing
     does all the inputs
     '''
-    aValue = int(input('what is your a value '))
-    bValue = int(input('what is your b value '))
-    cValue = int(input('what is your c value '))
+    equation = input('type in equation ')
     var = input('what is your variable ')
-    quadratics(aValue, bValue, cValue, var)
+    fix = fixEquation(equation, var)
+    simplified = fix.addLikeTerms(fix.sortTerms())
+    factor(simplified[0], simplified[1], simplified[2], var)
 calculations = 0
 ask()
