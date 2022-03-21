@@ -151,8 +151,10 @@ def quadratics(aValue, bValue, cValue, var):
         spaces = ''
         for i in range(len(str1)):
             fraction += '-'
+            calculations += 1
         for i in range(len(str1)//2):
             spaces += ' '
+            calculations += 1
         if (2*abs(aValue))/gcf > 1:
             print('root1:\n' + str1 + '\n' + fraction + '\n' + spaces + str(int((2*aValue)/gcf)) + '\n')
             print('root2:\n' + str2 + '\n' + fraction + '\n' + spaces + str(int((2*aValue)/gcf)) + '\n')
