@@ -68,8 +68,17 @@ class fixEquation(object):
             aValue += digit
         for digit in b:
             bValue += digit
+        if bValue > 0:
+            posb = '+'
+        else:
+            posb = ''
         for digit in c:
             cValue += digit
+        if cValue > 0:
+            posc = '+'
+        else:
+            posc = ''
+        print('\n\n\nstandard form: ' + str(aValue) + self.var + '^2' + posb + str(bValue) + self.var + posc + str(cValue))
         return (aValue, bValue, cValue)
 class solveQuadratic(object):
     def __init__(self):
@@ -127,7 +136,7 @@ class solveQuadratic(object):
                 guesses += 1
                 calculations += 2
             if guesses > len(factorMult) * 100:
-                print('\n\n\nfactored form: none\n')
+                print('\nfactored form: none\n')
                 solveQuadratic.finddis(ogaValue, ogbValue, ogcValue)
                 return True
         #uses x method to divide factors
