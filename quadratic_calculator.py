@@ -68,13 +68,13 @@ class fixEquation(object):
             aValue += digit
         for digit in b:
             bValue += digit
-        if bValue > 0:
+        if bValue >= 0:
             posb = '+'
         else:
             posb = ''
         for digit in c:
             cValue += digit
-        if cValue > 0:
+        if cValue >= 0:
             posc = '+'
         else:
             posc = ''
