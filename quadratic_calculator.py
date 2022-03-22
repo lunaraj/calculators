@@ -71,101 +71,111 @@ class fixEquation(object):
         for digit in c:
             cValue += digit
         return (aValue, bValue, cValue)
-def factor(aValue, bValue, cValue, var):  
-    '''
-    input: a, b, and c values of the quadratic equation
-    and the letter that is being used for a variable.
-    output: the quadratic factored and the roots of 
-    the quadratic if it can be factored. Returns whether
-    the quadratic can be factored 
-    '''
-    global calculations
-    bozo = ''
-    #if aValue is negative it factors out negative 1
-    ogaValue = aValue
-    ogbValue = bValue
-    ogcValue = cValue
-    if aValue < 0:
-        aValue = -aValue
-        bValue = -bValue
-        cValue = -cValue
-        bozo = '-'
-    #the factors will multiply to multValue and add to addValue
-    multValue = aValue * cValue
-    addValue = bValue
-    factor1 = 0
-    factor2 = 0
-    guesses = 0
-    multiple = 0
-    #finds the smallest number of a, b, and c value so can find the gcf of all three later. if difference of squares it doesn't count the bValue
-    calculations += 7
-    multiple = math.gcd(aValue, bValue, cValue)
-    if multiple > 1:
-        multiple = str(multiple)
-    else:
-        multiple = ''
-    #adds factors of multValue to list
-    factorMult = []
-    divisor = abs(multValue)
-    while divisor > 0:
-        if multValue%divisor == 0:
-            factorMult.append(divisor)
-            factorMult.append(-divisor)
-        divisor -= 1
-        calculations += 2
-    length = len(factorMult)
-    #finds the factors that will work
-    while True:
-        if factor1 + factor2 == addValue and factor1 * factor2 == multValue:
-            break
+class solveQuadratic(object):
+    def __init__(self):
+        self.vals = []
+    def factor(aValue, bValue, cValue, var):  
+        '''
+        input: a, b, and c values of the quadratic equation
+        and the letter that is being used for a variable.
+        output: the quadratic factored and the roots of 
+        the quadratic if it can be factored. Returns whether
+        the quadratic can be factored 
+        '''
+        global calculations
+        bozo = ''
+        #if aValue is negative it factors out negative 1
+        ogaValue = aValue
+        ogbValue = bValue
+        ogcValue = cValue
+        if aValue < 0:
+            aValue = -aValue
+            bValue = -bValue
+            cValue = -cValue
+            bozo = '-'
+        #the factors will multiply to multValue and add to addValue
+        multValue = aValue * cValue
+        addValue = bValue
+        factor1 = 0
+        factor2 = 0
+        guesses = 0
+        multiple = 0
+        #finds the smallest number of a, b, and c value so can find the gcf of all three later. if difference of squares it doesn't count the bValue
+        calculations += 7
+        multiple = math.gcd(aValue, bValue, cValue)
+        if multiple > 1:
+            multiple = str(multiple)
         else:
-            factor1 = factorMult[random.randint(0,length-1)]
-            factor2 = factorMult[random.randint(0,length-1)]
-            guesses += 1
+            multiple = ''
+        #adds factors of multValue to list
+        factorMult = []
+        divisor = abs(multValue)
+        while divisor > 0:
+            if multValue%divisor == 0:
+                factorMult.append(divisor)
+                factorMult.append(-divisor)
+            divisor -= 1
             calculations += 2
-        if guesses > len(factorMult) * 100:
-            print('\n\n\nfactored form: none\n')
-            finddis(ogaValue, ogbValue, ogcValue)
-            return True
-    #uses x method to divide factors
-    factor1Gcf = math.gcd(aValue, factor1)
-    factor2Gcf = math.gcd(aValue, factor2)
-    if factor1 < 0:
-        neg = ''
-    else:
-        neg = '+'
-    if factor2 < 0:
-        neg2 = ''
-    else:
-        neg2 = '+'
-    aValue2 = str(int(aValue/factor1Gcf))
-    aValue3 = str(int(aValue/factor2Gcf))
-    aValue4 = int(aValue2)
-    aValue5 = int(aValue3)
-    if aValue3 == '1':
-        aValue3 = ''
-    if aValue2 == '1':
-        aValue2 = ''
-    firstFactor = int(factor1/factor1Gcf)
-    secondFactor = int(factor2/factor2Gcf)
-    print('\n\n\nfactored form: ' + bozo + multiple + '(' + aValue2 + var + neg + str(firstFactor) + ')' + '(' + aValue3 + var + neg2 + str(secondFactor) + ')')
-    finddis(ogaValue, ogbValue, ogcValue)
-    def gcfDivide(factor, aValue):
-        gcf = math.gcd(abs(factor), aValue)
-        factor = factor/gcf
-        aValue = aValue/gcf
-        if aValue == 1:
-            return int(-factor)
+        length = len(factorMult)
+        #finds the factors that will work
+        while True:
+            if factor1 + factor2 == addValue and factor1 * factor2 == multValue:
+                break
+            else:
+                factor1 = factorMult[random.randint(0,length-1)]
+                factor2 = factorMult[random.randint(0,length-1)]
+                guesses += 1
+                calculations += 2
+            if guesses > len(factorMult) * 100:
+                print('\n\n\nfactored form: none\n')
+                solveQuadratic.finddis(ogaValue, ogbValue, ogcValue)
+                return True
+        #uses x method to divide factors
+        factor1Gcf = math.gcd(aValue, factor1)
+        factor2Gcf = math.gcd(aValue, factor2)
+        if factor1 < 0:
+            neg = ''
         else:
-            return str(int(-factor)) + '/' + str(int(aValue))
-    root1 = gcfDivide(firstFactor, aValue4)
-    root2 = gcfDivide(secondFactor, aValue5)
-    print('roots: ' + str(root1) + ' or ' + str(root2))
-    calculations += 10
-    return False
+            neg = '+'
+        if factor2 < 0:
+            neg2 = ''
+        else:
+            neg2 = '+'
+        aValue2 = str(int(aValue/factor1Gcf))
+        aValue3 = str(int(aValue/factor2Gcf))
+        aValue4 = int(aValue2)
+        aValue5 = int(aValue3)
+        if aValue3 == '1':
+            aValue3 = ''
+        if aValue2 == '1':
+            aValue2 = ''
+        firstFactor = int(factor1/factor1Gcf)
+        secondFactor = int(factor2/factor2Gcf)
+        print('\n\n\nfactored form: ' + bozo + multiple + '(' + aValue2 + var + neg + str(firstFactor) + ')' + '(' + aValue3 + var + neg2 + str(secondFactor) + ')')
+        finddis(ogaValue, ogbValue, ogcValue)
+        def gcfDivide(factor, aValue):
+            gcf = math.gcd(abs(factor), aValue)
+            factor = factor/gcf
+            aValue = aValue/gcf
+            if aValue == 1:
+                return int(-factor)
+            else:
+                return str(int(-factor)) + '/' + str(int(aValue))
+        root1 = gcfDivide(firstFactor, aValue4)
+        root2 = gcfDivide(secondFactor, aValue5)
+        print('roots: ' + str(root1) + ' or ' + str(root2))
+        calculations += 10
+        return False
+    def finddis(a, b, c):
+        '''
+        input: a b and c values of the quadratic.
+        output: the discriminant of the quadratic.
+        '''
+        dis = b**2-(4*a*c)
+        print('discriminant: ' + str(dis) + '\n')
 def quadratics(aValue, bValue, cValue, var):
     global calculations
-    isUnFactorable = factor(aValue, bValue, cValue, var)
+    isUnFactorable = solveQuadratic.factor(aValue, bValue, cValue, var)
     if isUnFactorable:
         def finddiscriminant(a, b, c):
             '''
@@ -250,6 +260,6 @@ def ask():
     var = input('what is your variable ')
     fix = fixEquation(equation, var)
     simplified = fix.addLikeTerms(fix.sortTerms())
-    factor(simplified[0], simplified[1], simplified[2], var)
+    quadratics(simplified[0], simplified[1], simplified[2], var)
 calculations = 0
 ask()
