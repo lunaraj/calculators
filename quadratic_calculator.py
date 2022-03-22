@@ -18,44 +18,30 @@ class fixEquation(object):
         a = []
         b = []
         c = []
-        neg = False
+        neg = 1
         neg2 = 1
         for term in terms:
             if term == '+':
-                neg = False
+                neg = 1
             elif term == '-':
-                neg = True
+                neg = -1
+            elif term == '=':
+                neg2 = -1
+                neg = 1
             elif '^' in term and self.var in term: #checks if term is a square
                 if term[0] == self.var:
-                    if neg:
-                        a.append(-1*neg2)
-                    else:
-                        a.append(1*neg2)
+                    a.append(1*neg2*neg)
                 else:
                     termCopy = term.split(self.var)
-                    if neg:
-                        a.append(-int(termCopy[0])*neg2)
-                    else:
-                        a.append(int(termCopy[0])*neg2)
+                    a.append(int(termCopy[0])*neg2*neg)
             elif self.var in term: #checks if term is a value of var
                 termCopy = term.split(self.var)
                 if term[0] == self.var:
-                    if neg:
-                        b.append(-1*neg2)
-                    else:
-                        b.append(1*neg2)
+                    b.append(1*neg2*neg)
                 else:
-                    if neg:
-                        b.append(-int(termCopy[0])*neg2)
-                    else:
-                        b.append(int(termCopy[0])*neg2)
-            elif term == '=':
-                neg2 = -1
+                    b.append(int(termCopy[0])*neg2*neg)
             else:
-                if neg:
-                    c.append(-int(term)*neg2)
-                else:
-                    c.append(int(term)*neg2)
+                c.append(int(term)*neg2*neg)
         return (a, b, c)
     def addLikeTerms(self, abc):
         a = abc[0]
