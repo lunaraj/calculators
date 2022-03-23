@@ -64,7 +64,7 @@ class fixEquation(object):
             posc = '+'
         else:
             posc = ''
-        print('\n\n\nstandard form: ' + str(aValue) + self.var + '^2' + posb + str(bValue) + self.var + posc + str(cValue))
+        print('\n\n\nstandard form: ' + str(aValue) + self.var + '^2' + posb + str(bValue) + self.var + posc + str(cValue) + '=0')
         return (aValue, bValue, cValue)
 class solveQuadratic(object):
     def __init__(self):
