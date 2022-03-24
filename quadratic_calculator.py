@@ -1,13 +1,15 @@
 import random
 import math
 import sys
-class fixEquation(object):
+class alterEquation(object):
     '''
     methods to put equation into standard form
     '''
     def __init__(self, equation, var):
         self.equation = equation
         self.var = var
+    def isParen(self):
+        return '(' in self.equation
     def sortTerms(self):
         '''
         input: nothing
@@ -66,9 +68,25 @@ class fixEquation(object):
             posc = ''
         print('\n\n\nstandard form: ' + str(aValue) + self.var + '^2' + posb + str(bValue) + self.var + posc + str(cValue) + '=0')
         return (aValue, bValue, cValue)
+    def finddis(a, b, c):
+        '''
+        input: a b and c values of the quadratic.
+        output: the discriminant of the quadratic.
+        '''
+        dis = b**2-(4*a*c)
+        return dis
+    def vertexForm(aValue, bValue, cValue):
+        pass
+        dis = alterEquation.finddis(aValue, bValue, cValue)
+        point1 = -bValue/2*aValue
+        point2 = -dis/4*aValue
+        return (point1, point2)
+        
 class solveQuadratic(object):
     def __init__(self):
-        self.vals = []
+        self.urmom = 5
+    def vertexForm(self):
+        pass
     def factor(aValue, bValue, cValue, var):  
         '''
         input: a, b, and c values of the quadratic equation
@@ -146,7 +164,7 @@ class solveQuadratic(object):
             aValue2 = ''
         firstFactor = int(factor1/factor1Gcf)
         secondFactor = int(factor2/factor2Gcf)
-        print('\n\n\nfactored form: ' + bozo + multiple + '(' + aValue2 + var + neg + str(firstFactor) + ')' + '(' + aValue3 + var + neg2 + str(secondFactor) + ')')
+        print('factored form: ' + bozo + multiple + '(' + aValue2 + var + neg + str(firstFactor) + ')' + '(' + aValue3 + var + neg2 + str(secondFactor) + ')')
         finddis(ogaValue, ogbValue, ogcValue)
         def gcfDivide(factor, aValue):
             gcf = math.gcd(abs(factor), aValue)
@@ -170,6 +188,9 @@ class solveQuadratic(object):
         print('discriminant: ' + str(dis) + '\n')
 def quadratics(aValue, bValue, cValue, var):
     global calculations
+    ogA = aValue
+    ogB = bValue
+    ogC = cValue
     isUnFactorable = solveQuadratic.factor(aValue, bValue, cValue, var)
     if isUnFactorable:
         def finddiscriminant(a, b, c):
@@ -237,6 +258,7 @@ def quadratics(aValue, bValue, cValue, var):
             print('root 1: ' + neg + paren[0] + str(int(-bValue/gcf)) + ' - ' + str(bozo) + 'sqrt' + str(int(newDis[1])) + paren[1] + '\n')
             print('root 2: ' + neg + paren[0] + str(int(-bValue/gcf)) + ' + ' + str(bozo)+ 'sqrt' + str(int(newDis[1])) + paren[1] + '\n')
     calculations += 10
+    print('vertex: ' + str(alterEquation.vertexForm(ogA, ogB, ogC)))
     print(str(calculations) + ' calculations')
 def finddis(a, b, c):
     '''
@@ -253,8 +275,9 @@ def ask():
     '''
     equation = input('type in equation ')
     var = input('what is your variable ')
-    fix = fixEquation(equation, var)
-    simplified = fix.addLikeTerms(fix.sortTerms())
-    quadratics(simplified[0], simplified[1], simplified[2], var)
+    fix = alterEquation(equation, var)
+    if not fix.isParen():
+        simplified = fix.addLikeTerms(fix.sortTerms())
+        quadratics(simplified[0], simplified[1], simplified[2], var)
 calculations = 0
 ask()
