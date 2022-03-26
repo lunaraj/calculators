@@ -153,12 +153,6 @@ class alterEquation(object):
             posc = ''
         print('\n\n\nstandard form: ' + str(aValue) + self.var + '^2' + posb + str(bValue) + self.var + posc + str(cValue) + '=0')
         return (aValue, bValue, cValue)
-    def vertexForm(aValue, bValue, cValue):
-        pass
-        dis = solveEquation.finddis(aValue, bValue, cValue)
-        point1 = -bValue/2*aValue
-        point2 = -dis/4*aValue
-        return (point1, point2)
     def addLikeTermsLinear(self, daList):
         a = daList[0]
         b = daList[1]
@@ -223,8 +217,6 @@ class solveEquation(object):
         '''
         dis = b**2-(4*a*c)
         return dis
-    def vertexForm(self):
-        pass
     def factor(aValue, bValue, cValue, var):  
         '''
         input: a, b, and c values of the quadratic equation
@@ -319,9 +311,6 @@ class solveEquation(object):
         return False
     def quadratics(aValue, bValue, cValue, var):
         global calculations
-        ogA = aValue
-        ogB = bValue
-        ogC = cValue
         isUnFactorable = solveEquation.factor(aValue, bValue, cValue, var)
         if isUnFactorable:
             def finddiscriminant(a, b, c):
@@ -389,7 +378,6 @@ class solveEquation(object):
                 print('root 1: ' + neg + paren[0] + str(int(-bValue/gcf)) + ' - ' + str(bozo) + 'sqrt' + str(int(newDis[1])) + paren[1] + '\n')
                 print('root 2: ' + neg + paren[0] + str(int(-bValue/gcf)) + ' + ' + str(bozo)+ 'sqrt' + str(int(newDis[1])) + paren[1] + '\n')
         calculations += 10
-        print('vertex: ' + str(alterEquation.vertexForm(ogA, ogB, ogC)))
         print(str(calculations) + ' calculations')
 def ask():
     '''
