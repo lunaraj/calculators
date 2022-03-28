@@ -17,6 +17,16 @@ class alterEquation(object):
             return 2
         else:
             return 1
+    def multiply(self, terms):
+        copy = terms.copy()
+        delList = []
+        for j in range(len(terms)):
+            if terms[j] == '*':
+                if '^3' in terms[j-1]:
+                    if '^3' in terms[j+1]:
+                        num = int(terms[j-1][0]) * int(terms[j+1][0])
+                        copy[j] = str(num) + '^6'
+                        delList.append(j)
     def sortTermsGroup(self):
         terms = self.equation.split(' ')
         a = []
